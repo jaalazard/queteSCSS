@@ -1,0 +1,26 @@
+@mixin ring($size, $color) {
+  $thickness: $size / 10;
+  width: #{$size}px;
+  height: #{$size}px;
+  border: #{$thickness}px solid $color;
+  border-radius: 50%;
+  box-shadow: 5px 5px rgba($color, 0.2);
+  background-color: transparent;
+}
+
+.rings-container {
+  position: relative;
+  display: flex;
+  padding-top: 80px;
+  justify-content: center;
+  align-items: center;
+
+  @for $i from 1 through 6 {
+    .ring-#{$i} {
+      @include ring($i * 20, hsl($i * 60, 80%, 50%));
+      z-index: 6 - $i;
+      margin-top: -($i - 1) * 0px;
+      margin-left: -($i - 1) * 10px;
+    }
+  }
+}
